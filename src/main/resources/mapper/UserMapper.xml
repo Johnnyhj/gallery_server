@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gallery.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.gallery.entity.UserEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="referer_user_id" property="refererUserId" jdbcType="INTEGER" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="phone_status" property="phoneStatus" jdbcType="TINYINT" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="EMAIL_STATUS" property="emailStatus" jdbcType="TINYINT" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    <result column="user_url" property="userUrl" jdbcType="VARCHAR" />
+    <result column="browser_token" property="browserToken" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="enable" property="enable" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, referer_user_id, login_name, password, nick_name, phone, phone_status, EMAIL,
+    EMAIL_STATUS, sex, birthday, user_url, browser_token, create_time, remark, enable
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByLoginName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from t_user
+    where login_name = #{loginName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gallery.entity.UserEntity"  useGeneratedKeys="true" keyProperty="id" >
+    insert into t_user (id, referer_user_id, login_name,
+      password, nick_name, phone, 
+      phone_status, EMAIL, EMAIL_STATUS, 
+      sex, birthday, user_url, 
+      browser_token, create_time, remark, 
+      enable)
+    values (#{id,jdbcType=INTEGER}, #{refererUserId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{phoneStatus,jdbcType=TINYINT}, #{email,jdbcType=VARCHAR}, #{emailStatus,jdbcType=TINYINT}, 
+      #{sex,jdbcType=TINYINT}, #{birthday,jdbcType=VARCHAR}, #{userUrl,jdbcType=VARCHAR}, 
+      #{browserToken,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{enable,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gallery.entity.UserEntity" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="refererUserId != null" >
+        referer_user_id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="phoneStatus != null" >
+        phone_status,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="emailStatus != null" >
+        EMAIL_STATUS,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="userUrl != null" >
+        user_url,
+      </if>
+      <if test="browserToken != null" >
+        browser_token,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="enable != null" >
+        enable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="refererUserId != null" >
+        #{refererUserId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStatus != null" >
+        #{phoneStatus,jdbcType=TINYINT},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailStatus != null" >
+        #{emailStatus,jdbcType=TINYINT},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="userUrl != null" >
+        #{userUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="browserToken != null" >
+        #{browserToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        #{enable,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gallery.entity.UserEntity" >
+    update t_user
+    <set >
+      <if test="refererUserId != null" >
+        referer_user_id = #{refererUserId,jdbcType=INTEGER},
+      </if>
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStatus != null" >
+        phone_status = #{phoneStatus,jdbcType=TINYINT},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailStatus != null" >
+        EMAIL_STATUS = #{emailStatus,jdbcType=TINYINT},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="userUrl != null" >
+        user_url = #{userUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="browserToken != null" >
+        browser_token = #{browserToken,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="enable != null" >
+        enable = #{enable,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gallery.entity.UserEntity" >
+    update t_user
+    set referer_user_id = #{refererUserId,jdbcType=INTEGER},
+      login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      phone_status = #{phoneStatus,jdbcType=TINYINT},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      EMAIL_STATUS = #{emailStatus,jdbcType=TINYINT},
+      sex = #{sex,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      user_url = #{userUrl,jdbcType=VARCHAR},
+      browser_token = #{browserToken,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      enable = #{enable,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

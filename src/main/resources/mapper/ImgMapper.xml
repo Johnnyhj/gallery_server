@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gallery.mapper.ImgMapper" >
+  <resultMap id="BaseResultMap" type="com.gallery.entity.ImgEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="album_id" property="albumId" jdbcType="INTEGER" />
+    <result column="if_cover" property="ifCover" jdbcType="BIT" />
+    <result column="img_name" property="imgName" jdbcType="VARCHAR" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="if_delete" property="ifDelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, album_id,if_cover, img_name, img_url, create_time, if_delete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByAlbumId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_img
+    where album_id = #{albumId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gallery.entity.ImgEntity" >
+    insert into t_img (id, album_id, if_cover,
+    img_name, img_url, create_time,
+    if_delete)
+    values (#{id,jdbcType=INTEGER}, #{albumId,jdbcType=INTEGER}, #{ifCover,jdbcType=BIT},
+    #{imgName,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+    #{ifDelete,jdbcType=BIT})
+  </insert>
+
+  <!-- 批量插入图片 -->
+  <insert id ="insertImgBatch" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_img (id, album_id, if_cover,
+    img_name, img_url, create_time, if_delete)
+    values
+    <foreach collection ="list" item="item" index= "index" separator =",">
+      (#{item.id,jdbcType=INTEGER}, #{item.albumId,jdbcType=INTEGER}, #{item.ifCover,jdbcType=BIT},
+      #{item.imgName,jdbcType=VARCHAR}, #{item.imgUrl,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP},
+      #{item.ifDelete,jdbcType=BIT})
+    </foreach >
+  </insert >
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.gallery.entity.ImgEntity" >
+    update t_img
+    <set >
+      <if test="albumId != null" >
+        album_id = #{albumId,jdbcType=INTEGER},
+      </if>
+      <if test="ifCover != null" >
+        if_cover = #{ifCover,jdbcType=BIT},
+      </if>
+      <if test="imgName != null" >
+        img_name = #{imgName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifDelete != null" >
+        if_delete = #{ifDelete,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatchByAlbumId" parameterType="java.lang.Integer" >
+    update t_img
+    SET if_delete =1
+    where album_id = #{albumId,jdbcType=INTEGER}
+  </update>
+</mapper>

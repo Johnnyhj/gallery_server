@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gallery.mapper.AlbumMapper" >
+  <resultMap id="BaseResultMap" type="com.gallery.entity.AlbumEntity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="album_name" property="albumName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="if_delete" property="ifDelete" jdbcType="BIT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, user_id, album_name,  create_time, if_delete
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_album
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <!--getAllCoversByUserId-->
+  <select id="selectCoversByUserId" resultType="com.gallery.dto.CoverDTO" parameterType="java.lang.Integer" >
+    SELECT
+      ta.id AS albumId,
+      ta.album_name AS albumName,
+      ta.user_id    AS userId,
+      ti.img_name   AS imgName,
+      ti.img_url    AS imgUrl
+    FROM t_album ta LEFT JOIN t_img ti ON ta.id = ti.album_id
+    WHERE ta.user_id = #{userId} AND ta.if_delete = 0;
+  </select>
+
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >-->
+    <!--delete from t_album-->
+    <!--where id = #{id,jdbcType=INTEGER}-->
+  <!--</delete>-->
+  <insert id="insert" parameterType="com.gallery.entity.AlbumEntity" useGeneratedKeys="true" keyProperty="id"  >
+    insert into t_album (id, user_id, album_name,
+    create_time, if_delete)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{albumName,jdbcType=VARCHAR},
+    #{createTime,jdbcType=TIMESTAMP}, #{ifDelete,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gallery.entity.AlbumEntity"  >
+    update t_album
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="albumName != null" >
+        album_name = #{albumName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifDelete != null" >
+        if_delete = #{ifDelete,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

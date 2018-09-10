@@ -1,0 +1,52 @@
+2018-09-06 19:41:54.010  INFO 58136 --- [main] com.albumEntity.AlbumApplication               : Starting AlbumApplication on bogon with PID 58136 (/Users/johnny/CodingConcerned/idea-project/Album_online/album_server/target/classes started by johnny in /Users/johnny/CodingConcerned/idea-project/Album_online/album_server)
+2018-09-06 19:41:54.015  INFO 58136 --- [main] com.albumEntity.AlbumApplication               : No active profile set, falling back to default profiles: default
+2018-09-06 19:41:54.243  INFO 58136 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@30bce90b: startup date [Thu Sep 06 19:41:54 CST 2018]; root of context hierarchy
+2018-09-06 19:41:55.794  INFO 58136 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-09-06 19:41:56.656  INFO 58136 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3e24a26d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-09-06 19:41:57.153  INFO 58136 --- [main] org.eclipse.jetty.util.log               : Logging initialized @5839ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-09-06 19:41:57.425  INFO 58136 --- [main] o.s.b.w.e.j.JettyServletWebServerFactory : Server initialized with port: 8080
+2018-09-06 19:41:57.433  INFO 58136 --- [main] org.eclipse.jetty.server.Server          : jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_77-b03
+2018-09-06 19:41:58.207  INFO 58136 --- [main] org.eclipse.jetty.server.session         : DefaultSessionIdManager workerName=node0
+2018-09-06 19:41:58.233  INFO 58136 --- [main] org.eclipse.jetty.server.session         : No SessionScavenger set, using defaults
+2018-09-06 19:41:58.243  INFO 58136 --- [main] org.eclipse.jetty.server.session         : node0 Scavenging every 600000ms
+2018-09-06 19:41:58.386  INFO 58136 --- [main] o.e.j.s.h.ContextHandler.application     : Initializing Spring embedded WebApplicationContext
+2018-09-06 19:41:58.399  INFO 58136 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4156 ms
+2018-09-06 19:41:58.678  INFO 58136 --- [main] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-09-06 19:41:58.684  INFO 58136 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-09-06 19:41:58.684  INFO 58136 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-09-06 19:41:58.685  INFO 58136 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-09-06 19:41:58.685  INFO 58136 --- [main] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-09-06 19:41:58.701  INFO 58136 --- [main] o.e.jetty.server.handler.ContextHandler  : Started o.s.b.w.e.j.JettyEmbeddedWebAppContext@6fa13e6{application,/gallery,[file:///private/var/folders/tz/jl90vmms2z105hdt4c5twm7c0000gn/T/jetty-docbase.3690632547768389162.8080/],AVAILABLE}
+2018-09-06 19:41:58.721  INFO 58136 --- [main] org.eclipse.jetty.server.Server          : Started @7410ms
+2018-09-06 19:42:00.297  INFO 58136 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-06 19:42:00.766  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@30bce90b: startup date [Thu Sep 06 19:41:54 CST 2018]; root of context hierarchy
+2018-09-06 19:42:01.097  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albumEntity/insertAlbum],methods=[POST]}" onto public int com.albumEntity.controller.AlbumController.insertAlbum(com.album.entity.AlbumEntity.Album)
+2018-09-06 19:42:01.100  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albumEntity/getCovers/{userId}],methods=[GET]}" onto public java.util.List<com.albumEntity.dto.CoverDTO> com.albumEntity.controller.AlbumController.getCovers(int)
+2018-09-06 19:42:01.101  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/albumEntity/deleteAlbum/{id}],methods=[DELETE]}" onto public int com.albumEntity.controller.AlbumController.deleteAlbum(int)
+2018-09-06 19:42:01.102  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/imgEntity/insertImgs],methods=[POST]}" onto public int com.albumEntity.controller.ImgController.insertImgs(java.util.List<com.albumEntity.entity.Img>)
+2018-09-06 19:42:01.106  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/imgEntity/getImgs/{albumId}],methods=[GET]}" onto public java.util.List<com.albumEntity.entity.Img> com.albumEntity.controller.ImgController.getImgsByAlbumId(int)
+2018-09-06 19:42:01.108  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/userEntity/getUser/{loginName}],methods=[GET]}" onto public com.albumEntity.entity.User com.albumEntity.controller.UserController.userGet(java.lang.String)
+2018-09-06 19:42:01.127  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/userEntity/insertUser],methods=[POST]}" onto public int com.albumEntity.controller.UserController.insertUser(com.albumEntity.entity.User)
+2018-09-06 19:42:01.134  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-09-06 19:42:01.135  INFO 58136 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-09-06 19:42:01.255  INFO 58136 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-06 19:42:01.256  INFO 58136 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-09-06 19:42:02.722  INFO 58136 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-09-06 19:42:02.731  INFO 58136 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-09-06 19:42:02.739  INFO 58136 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-09-06 19:42:02.756  INFO 58136 --- [main] o.e.j.s.h.ContextHandler.application     : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-09-06 19:42:02.756  INFO 58136 --- [main] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-09-06 19:42:02.772  INFO 58136 --- [main] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
+2018-09-06 19:42:02.818  INFO 58136 --- [main] o.e.jetty.server.AbstractConnector       : Started ServerConnector@7eb27768{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+2018-09-06 19:42:02.824  INFO 58136 --- [main] o.s.b.web.embedded.jetty.JettyWebServer  : Jetty started on port(s) 8080 (http/1.1) with context path '/gallery'
+2018-09-06 19:42:02.829  INFO 58136 --- [main] com.albumEntity.AlbumApplication               : Started AlbumApplication in 9.749 seconds (JVM running for 11.518)
+2018-09-06 19:42:23.505  INFO 58136 --- [qtp1813375175-19] com.albumEntity.service.impl.AlbumServiceImpl  : 查询用户id为 "1" 的所有相册封面
+2018-09-06 19:42:23.631  INFO 58136 --- [qtp1813375175-19] io.lettuce.core.EpollProvider            : Starting without optional epoll library
+2018-09-06 19:42:23.632  INFO 58136 --- [qtp1813375175-19] io.lettuce.core.KqueueProvider           : Starting without optional kqueue library
+2018-09-06 19:45:22.342  INFO 58136 --- [Thread-11] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@30bce90b: startup date [Thu Sep 06 19:41:54 CST 2018]; root of context hierarchy
+2018-09-06 19:45:22.350  INFO 58136 --- [Thread-11] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-09-06 19:45:22.352  INFO 58136 --- [Thread-11] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-09-06 19:45:23.487  INFO 58136 --- [Thread-11] o.e.jetty.server.AbstractConnector       : Stopped ServerConnector@7eb27768{HTTP/1.1,[http/1.1]}{0.0.0.0:8080}
+2018-09-06 19:45:23.493  INFO 58136 --- [Thread-11] org.eclipse.jetty.server.session         : node0 Stopped scavenging
+2018-09-06 19:45:23.496  INFO 58136 --- [Thread-11] o.e.j.s.h.ContextHandler.application     : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2018-09-06 19:45:23.496  INFO 58136 --- [Thread-11] o.e.jetty.server.handler.ContextHandler  : Stopped o.s.b.w.e.j.JettyEmbeddedWebAppContext@6fa13e6{application,/gallery,[file:///private/var/folders/tz/jl90vmms2z105hdt4c5twm7c0000gn/T/jetty-docbase.3690632547768389162.8080/],UNAVAILABLE}
